@@ -1,6 +1,6 @@
 {
   "name": "@custardcream98/custard-ui",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "repository": "https://github.com/custardcream98/custard-ui.git",
   "author": "shiwoo.park <custardcream@kakao.com>",
   "description": "Beautiful UI components for React Built with TypeScript and Emotion By custardcream98(Shi Woo, Park)",
@@ -9,7 +9,7 @@
   },
   "scripts": {
     "rollup": "rollup -c",
-    "deploy": "yarn run rollup && npm publish",
+    "deploy": "yarn run rollup && npm publish && build-storybook",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
