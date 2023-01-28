@@ -5,7 +5,7 @@ export interface ButtonProps {
 }
 
 const StyledButton = styled.button`
-  background-color: #000;
+  background-color: red;
   color: #fff;
   padding: 10px;
   border: none;
