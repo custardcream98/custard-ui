@@ -1,6 +1,6 @@
 {
   "name": "@custardcream98/custard-ui",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "repository": "https://github.com/custardcream98/custard-ui.git",
   "author": "shiwoo.park <custardcream@kakao.com>",
   "description": "Beautiful UI components for React Built with TypeScript and Emotion By custardcream98(Shi Woo, Park)",
@@ -9,9 +9,11 @@
   },
   "scripts": {
     "rollup": "rollup -c",
-    "deploy": "yarn run rollup && npm publish && build-storybook",
+    "deploy": "yarn run rollup && npm publish && yarn run build-storybook-docs",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "storybook-docs": "start-storybook --docs --no-manager-cache",
+    "build-storybook": "build-storybook",
+    "build-storybook-docs": "build-storybook --docs"
   },
   "devDependencies": {
     "@babel/core": "^7.20.12",
@@ -28,6 +30,7 @@
     "@storybook/addon-links": "^6.5.16",
     "@storybook/builder-webpack5": "^6.5.16",
     "@storybook/manager-webpack5": "^6.5.16",
+    "@storybook/mdx2-csf": "^0.0.4",
     "@storybook/react": "^6.5.16",
     "@storybook/testing-library": "^0.0.13",
     "@types/react": "^18.0.27",

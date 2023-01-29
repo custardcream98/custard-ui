@@ -1,0 +1,58 @@
+import { Meta, Canvas, Story } from "@storybook/addon-docs";
+import { Button } from "../components";
+
+<Meta title="Theme/Shadows" />
+
+export const Template = (args) => <Button {...args} />;
+
+# Shadows
+
+총 다섯가지의 그림자가 있습니다. `shadow` 속성으로 지정할 수 있습니다.
+
+<Canvas>
+  <Story
+    name="default"
+    args={{
+      children: "default",
+      shadow: "default",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="outlined"
+    args={{
+      children: "outlined",
+      shadow: "outlined",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="heavy"
+    args={{
+      children: "heavy",
+      shadow: "heavy",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="light"
+    args={{
+      children: "light",
+      shadow: "light",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="inset"
+    args={{
+      children: "inset",
+      shadow: "inset",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
