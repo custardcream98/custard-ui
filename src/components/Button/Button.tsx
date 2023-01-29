@@ -1,11 +1,17 @@
-import styled from "@emotion/styled";
 import { forwardRef } from "react";
 import type { ButtonHTMLAttributes } from "react";
+import styled from "@emotion/styled";
 import { css } from "@emotion/react";
-import type { ButtonVariant } from "@types";
+import type {
+  BorderRadiusType,
+  Hierarchy,
+  ShadowType,
+} from "@types";
 
 type StyledButtonProps = {
-  variant: ButtonVariant;
+  level: Hierarchy;
+  borderRadius: BorderRadiusType;
+  shadow: ShadowType;
 };
 
 export type ButtonProps = Partial<StyledButtonProps> &
@@ -13,12 +19,19 @@ export type ButtonProps = Partial<StyledButtonProps> &
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
-    { variant = "Primary", children, onClick, ...rest },
+    {
+      level = "primary",
+      borderRadius = "medium",
+      shadow = "default",
+      children,
+      onClick,
+      ...rest
+    },
     ref
   ) => {
     const onClickPreventDisabled: React.MouseEventHandler<HTMLButtonElement> =
       (event) => {
-        if (variant === "Disabled") {
+        if (level === "disabled") {
           event.preventDefault();
           return;
         }
@@ -28,7 +41,9 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <StyledButton
         ref={ref}
-        variant={variant}
+        level={level}
+        borderRadius={borderRadius}
+        shadow={shadow}
         onClick={onClickPreventDisabled}
         {...rest}
       >
@@ -38,49 +53,35 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   }
 );
 
-const BackgroundColors = {
-  Primary: "#FFA500",
-  Secondary: "#5b52fb",
-  Tertiary: "#ffe8c0",
-  Danger: "#FF0000",
-  Success: "#008000",
-  Warning: "#FFD000",
-  Outline: "transparent",
-  Disabled: "#ccc",
-};
-const TextColors = {
-  Primary: "#fff",
-  Secondary: "#fff",
-  Tertiary: "#393939",
-  Danger: "#fff",
-  Success: "#fff",
-  Warning: "#fff",
-  Outline: "#393939",
-  Disabled: "#393939",
-};
-
 const StyledButton = styled.button<StyledButtonProps>`
-  ${({ variant }) => css`
-    background-color: ${BackgroundColors[variant]};
-    color: ${TextColors[variant]};
+  ${({ level, theme, borderRadius }) => css`
+    background-color: ${theme.palette[level].main};
+    color: ${theme.palette[level].text};
+    border-radius: ${theme.shape.borderRadius[
+      borderRadius
+    ]};
   `}
-  ${({ variant }) =>
-    variant === "Outline" &&
+  ${({ level, theme }) =>
+    level === "outline" &&
     css`
-      border: 1px solid #393939;
+      border: 1px solid ${theme.palette.outline.text};
     `}
-  ${({ variant }) =>
-    variant === "Disabled" &&
+  ${({ level }) =>
+    level === "disabled" &&
     css`
       pointer-events: none;
     `}
-
+  ${({ shadow, theme }) =>
+    shadow &&
+    css`
+      box-shadow: ${theme.shape.shadows[shadow]};
+    `}
+  
   padding: 10px 15px;
-  border-radius: 5px;
   transition: all 0.2s ease;
 
-  ${({ variant }) =>
-    variant !== "Disabled" &&
+  ${({ level }) =>
+    level !== "disabled" &&
     css`
       :hover {
         transform: scale(1.05);
