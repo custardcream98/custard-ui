@@ -1,4 +1,4 @@
-import type { ComponentProps } from "react";
+import type { ComponentProps, FC } from "react";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import type {
@@ -17,14 +17,14 @@ type StyledButtonProps = {
 export type ButtonProps = ComponentProps<"button"> &
   Partial<StyledButtonProps>;
 
-const Button = ({
+const Button: FC<ButtonProps> = ({
   level = "primary",
   borderRadius = "medium",
   shadow = "default",
   children,
   onClick,
   ...rest
-}: ButtonProps) => {
+}) => {
   const onClickPreventDisabled: React.MouseEventHandler<HTMLButtonElement> =
     (event) => {
       if (level === "disabled") {

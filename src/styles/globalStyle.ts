@@ -14,34 +14,12 @@ const fonts = css`
 
   @font-face {
     font-family: "Pretendard";
-    font-weight: 700;
-    font-display: swap;
-    src: local("Pretendard Bold"),
-      url("../assets/Pretendard/Pretendard-Bold.subset.woff2")
-        format("woff2"),
-      url("../assets/Pretendard/Pretendard-Bold.subset.woff")
-        format("woff");
-  }
-
-  @font-face {
-    font-family: "Pretendard";
     font-weight: 600;
     font-display: swap;
     src: local("Pretendard SemiBold"),
       url("../assets/Pretendard/Pretendard-SemiBold.subset.woff2")
         format("woff2"),
       url("../assets/Pretendard/Pretendard-SemiBold.subset.woff")
-        format("woff");
-  }
-
-  @font-face {
-    font-family: "Pretendard";
-    font-weight: 500;
-    font-display: swap;
-    src: local("Pretendard Medium"),
-      url("../assets/Pretendard/Pretendard-Medium.subset.woff2")
-        format("woff2"),
-      url("../assets/Pretendard/Pretendard-Medium.subset.woff")
         format("woff");
   }
 

@@ -1,6 +1,6 @@
-import { Sizes } from "./units";
+import { SizesMap } from "./units";
 
-export type BorderRadius = Sizes & { rounded: "9999px" };
+export type BorderRadius = SizesMap & { rounded: "9999px" };
 export type BorderRadiusType = keyof BorderRadius;
 
 export type Shadow = {

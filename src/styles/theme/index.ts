@@ -1,5 +1,5 @@
 import { colors, palette } from "./colors";
-import { spacing, fontSizes } from "./units";
+import { spacing, fontSizes, fontWeights } from "./units";
 import { shape } from "./shape";
 
 import type { Theme } from "../../@types";
@@ -9,6 +9,7 @@ const theme: Theme = {
   palette,
   spacing,
   fontSizes,
+  fontWeights,
   shape,
 } as const;
 
@@ -18,5 +19,6 @@ export {
   palette,
   spacing,
   fontSizes,
+  fontWeights,
   shape,
 };

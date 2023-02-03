@@ -1,6 +1,10 @@
-import { FontSizes, Spacing } from "../../@types";
+import {
+  FontSizesMap,
+  FontWeightsMap,
+  SpacingsMap,
+} from "../../@types";
 
-const spacing: Spacing = {
+const spacing: SpacingsMap = {
   none: 0,
   xxsmall: "4px",
   xsmall: "8px",
@@ -12,7 +16,7 @@ const spacing: Spacing = {
   xxlarge: "96px",
 } as const;
 
-const fontSizes: FontSizes = {
+const fontSizes: FontSizesMap = {
   xsmall: "0.79rem",
   small: "0.889rem",
   medium: "1rem",
@@ -21,4 +25,10 @@ const fontSizes: FontSizes = {
   xxlarge: "1.424rem",
 } as const;
 
-export { spacing, fontSizes };
+const fontWeights: FontWeightsMap = {
+  light: "300",
+  regular: "400",
+  semiBold: "600",
+  extraBold: "800",
+};
+export { spacing, fontSizes, fontWeights };
