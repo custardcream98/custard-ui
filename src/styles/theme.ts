@@ -4,7 +4,7 @@ import type {
   Palette,
   Shape,
   Spacing,
-} from "@types";
+} from "../@types";
 
 const colors: Colors = {
   white: "#FFFFFF",

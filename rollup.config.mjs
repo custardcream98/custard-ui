@@ -1,49 +1,59 @@
-import resolve from "@rollup/plugin-node-resolve";
+import fs from "fs";
+import nodeResolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 import typescript from "@rollup/plugin-typescript";
+import babel from "@rollup/plugin-babel";
+import terser from "@rollup/plugin-terser";
 import dts from "rollup-plugin-dts";
 
-// To handle css files
-import postcss from "rollup-plugin-postcss";
-
-import terser from "@rollup/plugin-terser";
-import peerDepsExternal from "rollup-plugin-peer-deps-external";
-import image from "@rollup/plugin-image";
-
-import packageJson from "./package.json" assert { type: "json" };
+const pkg = JSON.parse(
+  fs.readFileSync("./package.json", { encoding: "utf-8" })
+);
+const external = [
+  /\.stories\./,
+  /\.test\./,
+  "react",
+  "@emotion/core",
+  "@emotion/react",
+  "@emotion/styled",
+];
 
 export default [
   {
-    external: ["react-dom"],
     input: "src/index.ts",
     output: [
       {
-        file: packageJson.main,
+        file: pkg.main,
         format: "cjs",
         sourcemap: true,
       },
       {
-        file: packageJson.module,
+        file: pkg.module,
         format: "esm",
         sourcemap: true,
       },
     ],
     plugins: [
-      peerDepsExternal(),
-      resolve(),
+      nodeResolve(),
+      typescript({
+        tsconfig: "./tsconfig.json",
+        exclude: [
+          "**/*.test.@(js|jsx|ts|tsx)",
+          "**/*.stories.@(js|jsx|ts|tsx)",
+        ],
+      }),
       commonjs(),
-      typescript({ tsconfig: "./tsconfig.json" }),
-      postcss(),
-
+      babel({
+        babelHelpers: "runtime",
+        exclude: "node_modules/**",
+      }),
       terser(),
-      image(),
     ],
+    external,
   },
   {
-    input: "dist/esm/types/index.d.ts",
+    input: "dist/esm/index.d.ts",
     output: [{ file: "dist/index.d.ts", format: "esm" }],
     plugins: [dts()],
-
-    external: [/\.css$/], // telling rollup anything that is .css aren't part of type exports
   },
 ];
