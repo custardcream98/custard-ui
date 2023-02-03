@@ -1,7 +1,5 @@
-name: Build and Deploy Storybook
-on:
-  push:
-    paths: ["src/components/**"]
+name: Build and Deploy Storybook on Manual
+on: workflow_dispatch
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -20,3 +18,4 @@ jobs:
           branch: main
           folder: docs-build
           target-folder: docs
+
