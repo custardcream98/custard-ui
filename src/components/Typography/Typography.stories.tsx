@@ -2,6 +2,7 @@ import type {
   ComponentStory,
   ComponentMeta,
 } from "@storybook/react";
+
 import Typography from "./Typography";
 
 export default {
@@ -16,13 +17,80 @@ export default {
     },
   },
   argTypes: {
-    fontSize: {
-      description: "폰트 사이즈를 선택할 수 있습니다.",
-      control: { type: "select" },
+    textAlign: {
+      control: {
+        type: "select",
+        options: [
+          "left",
+          "center",
+          "right",
+          "justify",
+          "end",
+          "match-parent",
+          "start",
+        ],
+      },
+    },
+    textTransform: {
+      control: {
+        type: "select",
+        options: [
+          "capitalize",
+          "lowercase",
+          "uppercase",
+          "full-size-kana",
+          "full-width",
+          "none",
+        ],
+      },
     },
     component: {
       description:
         "텍스트를 담을 요소의 종류를 선택할 수 있습니다.",
+    },
+    fontSize: {
+      description: "폰트 사이즈를 선택할 수 있습니다.",
+      control: {
+        type: "select",
+        options: [
+          "xsmall",
+          "small",
+          "medium",
+          "large",
+          "xlarge",
+          "xxlarge",
+        ],
+      },
+    },
+    fontWeight: {
+      description: "폰트 두께를 선택할 수 있습니다.",
+      control: {
+        type: "select",
+        options: [
+          "light",
+          "regular",
+          "semiBold",
+          "extraBold",
+        ],
+      },
+    },
+    marginTop: {
+      control: "select",
+    },
+    marginBottom: {
+      control: "select",
+    },
+    backgroundColor: {
+      control: "select",
+    },
+    textColor: {
+      control: "select",
+    },
+    width: {
+      control: "text",
+    },
+    height: {
+      control: "text",
     },
   },
 } as ComponentMeta<typeof Typography>;

@@ -5,3 +5,5 @@ export type Colors = {
   secondary: string;
   gray: string;
 };
+
+export type ColorsType = keyof Colors;

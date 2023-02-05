@@ -19,7 +19,7 @@ export type SpacingsMap = {
   xlarge: string;
   xxlarge: string;
 };
-export type SpacingType = keyof SpacingsMap;
+export type SpacingsMapType = keyof SpacingsMap;
 
 export type FontSizes =
   | "xsmall"

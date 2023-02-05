@@ -1,2 +1,2 @@
 export { default as resolveNumaricStyle } from "./resolveNumaricStyle";
-export * from "./helpers";
+export * from "./typeFunctions";

@@ -1,71 +1,76 @@
 import { css } from "@emotion/react";
 import type { SerializedStyles } from "@emotion/serialize";
 import styled from "@emotion/styled";
-import { isNumber } from "lodash";
-import type { ComponentProps, FC } from "react";
+import type { FC } from "react";
 import type {
-  FontSizes,
-  FontWeights,
-  Spacings,
+  BlockComponentProps,
+  InlineLevelComponentProps,
+  TextProps,
 } from "../../@types";
 
 import { theme } from "../../styles";
-import { resolveNumaricStyle } from "../../utils";
+import {
+  cssBoxSize,
+  cssColor,
+  cssFontSize,
+  cssFontWeight,
+  cssSpacingX,
+  cssSpacingY,
+  cssTextAlign,
+  cssTextTransform,
+} from "../../styles/interpolate";
 
-type TypographyComponents =
+type TypographyBlockComponents =
   | "h1"
   | "h2"
   | "h3"
   | "h4"
   | "h5"
   | "h6"
-  | "p"
-  | "span";
+  | "p";
+type TypographyInlineLevelComponents = "span";
 
-type TypographyThemeProps = {
-  component?: TypographyComponents;
-};
-type StyledTypographyProps = {
+type TypographyComponents =
+  | TypographyBlockComponents
+  | TypographyInlineLevelComponents;
+
+type BlockTypographyProps = {
   component: TypographyComponents;
-  fontSize?: FontSizes | number;
-  fontWeight?: FontWeights | number;
-  marginTop?: Spacings | number;
-  marginBottom?: Spacings | number;
-};
-const isDefinedFontSize = (
-  fontSize: FontSizes | number
-): fontSize is FontSizes =>
-  typeof fontSize === "string" &&
-  fontSize in theme.fontSizes;
-const isDefinedFontWeight = (
-  fontWeight: FontWeights | number
-): fontWeight is FontWeights =>
-  typeof fontWeight === "string" &&
-  fontWeight in theme.fontWeights;
-const isDefinedSpacing = (
-  spacing: Spacings | number
-): spacing is Spacings =>
-  typeof spacing === "string" && spacing in theme.spacing;
+} & BlockComponentProps;
+type InlineLevelTypographyProps = {
+  component: TypographyInlineLevelComponents;
+} & InlineLevelComponentProps;
 
-type TypographyProps =
-  ComponentProps<TypographyComponents> &
-    TypographyThemeProps &
-    Partial<StyledTypographyProps>;
+type TypographyProps = TextProps &
+  (BlockTypographyProps | InlineLevelTypographyProps);
 
 const Typography: FC<TypographyProps> = ({
   component = "span",
-  fontSize,
-  fontWeight,
-  marginTop,
-  marginBottom,
   children,
   ...rest
 }) => {
+  const isInline = component === "span";
+  const isInlineLevelStyleDefined =
+    !rest.fontSize &&
+    !rest.fontWeight &&
+    !rest.textAlign &&
+    !rest.width &&
+    !rest.marginLeft &&
+    !rest.marginRight &&
+    !rest.paddingLeft &&
+    !rest.paddingRight;
+
+  const isBlockLevelStyleDefined =
+    !isInline &&
+    !isInlineLevelStyleDefined &&
+    !rest.marginTop &&
+    !rest.marginBottom &&
+    !rest.paddingTop &&
+    !rest.paddingBottom;
+
   if (
-    !fontSize &&
-    !fontWeight &&
-    !marginTop &&
-    !marginBottom
+    (isInline && !isInlineLevelStyleDefined) ||
+    (!isInline && !isBlockLevelStyleDefined)
   ) {
     return (
       <StyledTypography
@@ -78,19 +83,10 @@ const Typography: FC<TypographyProps> = ({
     );
   }
 
-  const resolvedFontSize = fontSize ?? "medium";
-  const resolvedFontWeight = fontWeight ?? "regular";
-  const resolvedMarginTop = marginTop ?? 0;
-  const resolvedMarginBottom = marginBottom ?? 0;
-
   return (
     <StyledTypography
       as={component}
       component={component}
-      fontSize={resolvedFontSize}
-      fontWeight={resolvedFontWeight}
-      marginTop={resolvedMarginTop}
-      marginBottom={resolvedMarginBottom}
       {...rest}
     >
       {children}
@@ -99,7 +95,7 @@ const Typography: FC<TypographyProps> = ({
 };
 
 const typographyStyles: Record<
-  TypographyComponents,
+  TypographyComponents | "span",
   SerializedStyles
 > = {
   h1: css`
@@ -152,42 +148,19 @@ const typographyStyles: Record<
   `,
 };
 
-const StyledTypography = styled.span<StyledTypographyProps>`
+const StyledTypography = styled.span<TypographyProps>`
   ${({ component }) => typographyStyles[component]};
 
-  ${({ fontSize }) =>
-    fontSize &&
-    css`
-      font-size: ${isDefinedFontSize(fontSize)
-        ? theme.fontSizes[fontSize]
-        : resolveNumaricStyle(fontSize)};
-    `};
+  ${cssFontSize}
+  ${cssFontWeight}
 
-  ${({ fontWeight }) =>
-    fontWeight &&
-    css`
-      font-weight: ${isDefinedFontWeight(fontWeight)
-        ? theme.fontWeights[fontWeight]
-        : isNumber(fontWeight)
-        ? fontWeight
-        : theme.fontWeights.regular};
-    `};
+  ${cssColor}
+  ${cssTextAlign}
+  ${cssTextTransform}
+  ${cssSpacingX}
+  ${cssSpacingY}
 
-  ${({ marginTop }) =>
-    marginTop &&
-    css`
-      margin-top: ${isDefinedSpacing(marginTop)
-        ? theme.spacing[marginTop]
-        : resolveNumaricStyle(marginTop)};
-    `};
-
-  ${({ marginBottom }) =>
-    marginBottom &&
-    css`
-      margin-bottom: ${isDefinedSpacing(marginBottom)
-        ? theme.spacing[marginBottom]
-        : resolveNumaricStyle(marginBottom)};
-    `};
+  ${cssBoxSize}
 `;
 
 export default Typography;

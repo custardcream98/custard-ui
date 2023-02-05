@@ -4,3 +4,4 @@ export * from "./colors";
 export * from "./palette";
 export * from "./shape";
 export * from "./theme";
+export * from "./props";
