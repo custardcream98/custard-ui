@@ -40,9 +40,6 @@ const Template: ComponentStory<typeof Button> = (args) => (
   <Button {...args} />
 );
 
-/**
- * title
- */
 export const Primary = Template.bind({});
 Primary.args = {
   level: "primary",

@@ -10,10 +10,12 @@ import type {
 
 import { theme } from "../../styles";
 import {
+  cssBorderRadius,
   cssBoxSize,
   cssColor,
   cssFontSize,
   cssFontWeight,
+  cssShadow,
   cssSpacing,
   cssSpacingX,
   cssSpacingY,
@@ -118,6 +120,7 @@ const typographyStyles: Record<
 
 const StyledTypography = styled.span<TypographyProps>`
   line-height: 1.2;
+  overflow: auto;
 
   ${({ component }) => typographyStyles[component]};
 
@@ -130,7 +133,9 @@ const StyledTypography = styled.span<TypographyProps>`
     cssSpacingX,
     cssSpacingY,
     cssSpacing,
-    cssBoxSize
+    cssBoxSize,
+    cssBorderRadius,
+    cssShadow
   )}
 `;
 

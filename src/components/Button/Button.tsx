@@ -2,17 +2,20 @@ import type { ComponentProps, FC } from "react";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import type {
-  BorderRadiusType,
+  BorderRadiusComponentProps,
   Hierarchy,
-  ShadowType,
+  ShadowComponentProps,
 } from "../../@types";
 import { theme } from "../../styles";
+import {
+  cssBorderRadius,
+  cssShadow,
+} from "../../styles/interpolate";
 
 type StyledButtonProps = {
   level: Hierarchy;
-  borderRadius: BorderRadiusType;
-  shadow: ShadowType;
-};
+} & ShadowComponentProps &
+  BorderRadiusComponentProps;
 
 export type ButtonProps = ComponentProps<"button"> &
   Partial<StyledButtonProps>;
@@ -20,7 +23,7 @@ export type ButtonProps = ComponentProps<"button"> &
 const Button: FC<ButtonProps> = ({
   level = "primary",
   borderRadius = "medium",
-  shadow = "default",
+  boxShadow = "default",
   children,
   onClick,
   ...rest
@@ -38,7 +41,7 @@ const Button: FC<ButtonProps> = ({
     <StyledButton
       level={level}
       borderRadius={borderRadius}
-      shadow={shadow}
+      boxShadow={boxShadow}
       onClick={onClickPreventDisabled}
       {...rest}
     >
@@ -48,12 +51,9 @@ const Button: FC<ButtonProps> = ({
 };
 
 const StyledButton = styled.button<StyledButtonProps>`
-  ${({ level, borderRadius }) => css`
+  ${({ level }) => css`
     background-color: ${theme.palette[level].main};
     color: ${theme.palette[level].text};
-    border-radius: ${theme.shape.borderRadius[
-      borderRadius
-    ]};
   `}
   ${({ level }) =>
     level === "outline" &&
@@ -65,11 +65,9 @@ const StyledButton = styled.button<StyledButtonProps>`
     css`
       pointer-events: none;
     `}
-  ${({ shadow }) =>
-    shadow &&
-    css`
-      box-shadow: ${theme.shape.shadows[shadow]};
-    `}
+
+  ${cssShadow}
+  ${cssBorderRadius}
 
   padding: 10px 15px;
   transition: all 0.2s ease;

@@ -99,9 +99,6 @@ const Template: ComponentStory<typeof Typography> = (
   args
 ) => <Typography {...args} />;
 
-/**
- * title
- */
 export const Span = Template.bind({});
 Span.args = {
   children: "Welcome to Custard UI, 리액트 라이브러리!",
