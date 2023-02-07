@@ -14,11 +14,13 @@ import {
   cssColor,
   cssFontSize,
   cssFontWeight,
+  cssSpacing,
   cssSpacingX,
   cssSpacingY,
   cssTextAlign,
   cssTextTransform,
 } from "../../styles/interpolate";
+import { combineInterpolatedCss } from "../../utils";
 
 type TypographyBlockComponents =
   | "h1"
@@ -34,14 +36,14 @@ type TypographyComponents =
   | TypographyBlockComponents
   | TypographyInlineLevelComponents;
 
-type BlockTypographyProps = {
+export type BlockTypographyProps = {
   component: TypographyComponents;
 } & BlockComponentProps;
-type InlineLevelTypographyProps = {
+export type InlineLevelTypographyProps = {
   component: TypographyInlineLevelComponents;
 } & InlineLevelComponentProps;
 
-type TypographyProps = TextProps &
+export type TypographyProps = TextProps &
   (BlockTypographyProps | InlineLevelTypographyProps);
 
 const Typography: FC<TypographyProps> = ({
@@ -49,40 +51,6 @@ const Typography: FC<TypographyProps> = ({
   children,
   ...rest
 }) => {
-  const isInline = component === "span";
-  const isInlineLevelStyleDefined =
-    !rest.fontSize &&
-    !rest.fontWeight &&
-    !rest.textAlign &&
-    !rest.width &&
-    !rest.marginLeft &&
-    !rest.marginRight &&
-    !rest.paddingLeft &&
-    !rest.paddingRight;
-
-  const isBlockLevelStyleDefined =
-    !isInline &&
-    !isInlineLevelStyleDefined &&
-    !rest.marginTop &&
-    !rest.marginBottom &&
-    !rest.paddingTop &&
-    !rest.paddingBottom;
-
-  if (
-    (isInline && !isInlineLevelStyleDefined) ||
-    (!isInline && !isBlockLevelStyleDefined)
-  ) {
-    return (
-      <StyledTypography
-        as={component}
-        component={component}
-        {...rest}
-      >
-        {children}
-      </StyledTypography>
-    );
-  }
-
   return (
     <StyledTypography
       as={component}
@@ -95,7 +63,7 @@ const Typography: FC<TypographyProps> = ({
 };
 
 const typographyStyles: Record<
-  TypographyComponents | "span",
+  TypographyComponents,
   SerializedStyles
 > = {
   h1: css`
@@ -149,18 +117,21 @@ const typographyStyles: Record<
 };
 
 const StyledTypography = styled.span<TypographyProps>`
+  line-height: 1.2;
+
   ${({ component }) => typographyStyles[component]};
 
-  ${cssFontSize}
-  ${cssFontWeight}
-
-  ${cssColor}
-  ${cssTextAlign}
-  ${cssTextTransform}
-  ${cssSpacingX}
-  ${cssSpacingY}
-
-  ${cssBoxSize}
+  ${combineInterpolatedCss(
+    cssFontSize,
+    cssFontWeight,
+    cssColor,
+    cssTextAlign,
+    cssTextTransform,
+    cssSpacingX,
+    cssSpacingY,
+    cssSpacing,
+    cssBoxSize
+  )}
 `;
 
 export default Typography;

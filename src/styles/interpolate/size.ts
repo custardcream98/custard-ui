@@ -7,19 +7,15 @@ const cssBoxSize = ({
   height,
 }: CSSProp<string | number, "width"> &
   CSSProp<string | number, "height">) =>
-  `
-    ${
-      width &&
-      css`
-        width: ${resolveNumaricStyle(width)};
-      `
-    }
-    ${
-      height &&
-      css`
-        height: ${resolveNumaricStyle(height)};
-      `
-    }
+  css`
+    ${width &&
+    css`
+      width: ${resolveNumaricStyle(width)};
+    `}
+    ${height &&
+    css`
+      height: ${resolveNumaricStyle(height)};
+    `}
   `;
 
 export { cssBoxSize };

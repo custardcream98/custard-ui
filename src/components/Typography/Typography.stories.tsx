@@ -17,6 +17,10 @@ export default {
     },
   },
   argTypes: {
+    component: {
+      description:
+        "텍스트를 담을 요소의 종류를 선택할 수 있습니다.",
+    },
     textAlign: {
       control: {
         type: "select",
@@ -43,10 +47,6 @@ export default {
           "none",
         ],
       },
-    },
-    component: {
-      description:
-        "텍스트를 담을 요소의 종류를 선택할 수 있습니다.",
     },
     fontSize: {
       description: "폰트 사이즈를 선택할 수 있습니다.",
