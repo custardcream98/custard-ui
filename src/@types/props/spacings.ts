@@ -8,7 +8,11 @@ export type MarginYComponentProps = {
   marginTop?: SpacingsMapType;
   marginBottom?: SpacingsMapType;
 };
-export type MarginComponentProps = MarginXComponentProps &
+export type MarginAllComponentProps = {
+  margin?: SpacingsMapType;
+};
+export type MarginComponentProps = MarginAllComponentProps &
+  MarginXComponentProps &
   MarginYComponentProps;
 export type PaddingXComponentProps = {
   paddingLeft?: SpacingsMapType;
@@ -18,7 +22,12 @@ export type PaddingYComponentProps = {
   paddingTop?: SpacingsMapType;
   paddingBottom?: SpacingsMapType;
 };
-export type PaddingComponentProps = PaddingXComponentProps &
-  PaddingYComponentProps;
+export type PaddingAllComponentProps = {
+  padding?: SpacingsMapType;
+};
+export type PaddingComponentProps =
+  PaddingAllComponentProps &
+    PaddingXComponentProps &
+    PaddingYComponentProps;
 export type SpacingComponentProps = MarginComponentProps &
   PaddingComponentProps;
