@@ -1,7 +1,6 @@
 import { css } from "@emotion/react";
-import type { CSSProperties } from "@emotion/serialize";
 import styled from "@emotion/styled";
-import type { FC } from "react";
+import type { CSSProperties, FC } from "react";
 import { cssBoxSize } from "../../styles/interpolate";
 import { resolveNumaricStyle } from "../../utils";
 

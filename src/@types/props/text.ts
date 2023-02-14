@@ -1,4 +1,4 @@
-import type { CSSProperties } from "@emotion/serialize";
+import type { CSSProperties } from "react";
 import type { FontSizes, FontWeights } from "../units";
 
 export type TextProps = {

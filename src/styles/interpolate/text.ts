@@ -1,6 +1,6 @@
 import { css } from "@emotion/react";
-import { CSSProperties } from "@emotion/serialize";
 import { isNumber } from "lodash";
+import type { CSSProperties } from "react";
 import type { FontSizes, FontWeights } from "../../@types";
 import type { CSSProp, CSSValue } from "../../utils";
 import { resolveNumaricStyle } from "../../utils";

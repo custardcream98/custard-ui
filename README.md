@@ -6,7 +6,7 @@ React 디자인 시스템 개발중!
 
 ## 사용하기
 
-custard-ui는 node package로 배포돼었습니다.
+custard-ui는 node package로 배포되었습니다.
 
 ### npm
 
