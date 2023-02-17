@@ -1,0 +1,36 @@
+import { Meta, Canvas, Story } from "@storybook/addon-docs";
+import { Checkbox } from "../../../";
+
+<Meta
+  title="Components/Inputs/Checkbox"
+  component={Checkbox}
+/>
+
+export const Template = (args) => <Checkbox {...args} />;
+
+# Checkbox
+
+`input[type="checkbox"]`를 나타내는 컴포넌트입니다. `checkedTextColor`, `checkedBackgroundColor`, `uncheckedTextColor`, `uncheckedBackgroundColor` 네가지 prop을 통해 색을 변경할 수 있습니다.
+
+<Canvas>
+  <Story
+    name="기본"
+    args={{
+      id: "checkbox",
+      label: "Checkbox",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name="색을 변경한 경우"
+    args={{
+      id: "checkbox2",
+      label: "Checkbox",
+      checkedBackgroundColor: "secondary",
+      uncheckedTextColor: "secondary",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
