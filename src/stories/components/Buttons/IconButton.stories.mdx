@@ -1,5 +1,5 @@
 import { Meta, Canvas, Story } from "@storybook/addon-docs";
-import IconButton from "./IconButton";
+import { IconButton } from "../../../";
 import { FiArrowUpCircle } from "react-icons/fi";
 
 <Meta
@@ -7,11 +7,15 @@ import { FiArrowUpCircle } from "react-icons/fi";
   component={IconButton}
 />
 
-export const Template = (args) => <IconButton {...args} />;
+export const Template = (args) => (
+  <IconButton iconSize={20} {...args} />
+);
 
 # IconButton
 
-`react-icons` 라이브러리에서 제공하는 아이콘을 담을 수 있는 버튼입니다.
+`react-icons` 라이브러리에서 제공하는 아이콘을 담을 수 있는 버튼입니다. [Button](/docs/components-buttons-button--primary) 컴포넌트와 마찬가지로 `level` 속성을 통해 버튼의 스타일을 설정할 수 있습니다.
+
+> 참고: `Show code` 버튼을 눌렀을 때 나오는 `icon={() => {}}`의 경우 값으로 `react-icons`에서 제공하는 `FiArrowUpCircle` 컴포넌트가 전달되고 있음을 표현한 것으로, 실제로는 `icon={FiArrowUpCircle}`와 같이 사용합니다.
 
 <Canvas>
   <Story
@@ -35,6 +39,8 @@ export const Template = (args) => <IconButton {...args} />;
     {Template.bind({})}
   </Story>
 </Canvas>
+
+> 아이콘의 기본 크기는 `20px`이며, `iconSize` 속성을 통해 아이콘의 크기를 조절할 수 있습니다.
 
 텍스트 없이 아이콘만 담을 수도 있으며, 이 경우 `iconTitle` 속성으로 `svg` 요소의 `title` 속성을 설정할 수 있습니다.
 

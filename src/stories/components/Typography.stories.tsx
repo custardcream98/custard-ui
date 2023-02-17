@@ -3,7 +3,7 @@ import type {
   ComponentMeta,
 } from "@storybook/react";
 
-import Typography from "./Typography";
+import { Typography } from "../../";
 
 export default {
   title: "Components/Typography",

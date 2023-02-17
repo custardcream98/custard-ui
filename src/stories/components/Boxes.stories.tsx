@@ -1,7 +1,4 @@
-import Typography from "../Typography";
-import Center from "./Center";
-import Div from "./Div";
-import Flex from "./Flex";
+import { Typography, Center, Div, Flex } from "../../";
 
 export default {
   title: "Components/Boxes",
