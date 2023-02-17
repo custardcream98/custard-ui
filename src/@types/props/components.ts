@@ -1,5 +1,6 @@
 import type { NeverAll } from "../../utils";
 import type { ColorComponentProps } from "./colors";
+import type { DefaultProps } from "./defaultProps";
 import type {
   BorderRadiusComponentProps,
   ShadowComponentProps,
@@ -13,7 +14,8 @@ import type {
   PaddingYComponentProps,
 } from "./spacings";
 
-type ComponentProps = ColorComponentProps &
+type ComponentProps = DefaultProps &
+  ColorComponentProps &
   ShadowComponentProps &
   BorderRadiusComponentProps;
 
