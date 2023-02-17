@@ -45,6 +45,7 @@
     "@storybook/mdx2-csf": "^0.0.4",
     "@storybook/react": "^6.5.14",
     "@storybook/testing-library": "^0.0.13",
+    "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@types/jest": "^29.2.4",
     "@types/react": "^17.0.35",

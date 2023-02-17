@@ -6,6 +6,7 @@ import { theme } from "../../styles";
 import Typography from "../Typography";
 import Button from "./Button";
 import type { ButtonProps } from "./Button";
+import { resolveNumaricStyle } from "../../utils";
 
 type IconButtonProps = ButtonProps & {
   icon: IconType;
@@ -28,7 +29,9 @@ const IconButton: FC<IconButtonProps> = ({
   return (
     <StyledIconButton level={level} {...rest}>
       <Icon
-        size={iconSize ?? "1rem"}
+        size={
+          iconSize ? resolveNumaricStyle(iconSize) : "20px"
+        }
         color={
           iconColor
             ? theme.colors[iconColor]
