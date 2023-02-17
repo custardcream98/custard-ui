@@ -1,5 +1,5 @@
 module.exports = {
-  // plugins: ["@emotion"],
+  // plugins: ["@emotion/babel-plugin"],
   presets: [
     "@babel/preset-env",
     "@babel/preset-typescript",
