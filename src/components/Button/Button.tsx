@@ -11,6 +11,7 @@ import {
   cssBorderRadius,
   cssShadow,
 } from "../../styles/interpolate";
+import Typography from "../Typography";
 
 type StyledButtonProps = {
   level: Hierarchy;
@@ -45,12 +46,24 @@ const Button: FC<ButtonProps> = ({
       onClick={onClickPreventDisabled}
       {...rest}
     >
-      {children}
+      {typeof children === "string" ? (
+        <Typography component="span">{children}</Typography>
+      ) : (
+        children
+      )}
     </StyledButton>
   );
 };
 
 const StyledButton = styled.button<StyledButtonProps>`
+  max-width: 300px;
+  display: flex;
+  align-items: center;
+
+  span {
+    transform: translateY(0.1em);
+  }
+
   ${({ level }) => css`
     background-color: ${theme.palette[level].main};
     color: ${theme.palette[level].text};
