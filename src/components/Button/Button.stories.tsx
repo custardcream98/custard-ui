@@ -10,7 +10,7 @@ export default {
   parameters: {
     docs: {
       description: {
-        component: `\`<button>\` 요소를 의미하는 버튼 컴포넌트입니다. \`hover\`시에 살짝 커지는 효과가 적용됩니다.`,
+        component: `\`<button>\` 요소를 의미하는 버튼 컴포넌트입니다. \`hover\`시에 살짝 커지는 효과가 적용됩니다.\n\n\`disabled\` level을 선택하면 \`onClick\` 이벤트의 동작을 막습니다.`,
       },
       stories: {},
     },
