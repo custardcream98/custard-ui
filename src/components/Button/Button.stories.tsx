@@ -5,7 +5,7 @@ import type {
 import Button from "./Button";
 
 export default {
-  title: "Components/Button",
+  title: "Components/Buttons/Button",
   component: Button,
   parameters: {
     docs: {
