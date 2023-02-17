@@ -24,3 +24,17 @@ npm i custard-ui
   "react-icons": "^4.7.1"
 }
 ```
+
+## 로컬 환경에서 라이브러리 테스트하기
+
+`Jest`, `testing-library`를 활용해 테스트 환경이 구축돼 있습니다.
+
+```shell
+yarn test
+```
+
+`Storybook`을 활용해 렌더링된 컴포넌트의 모습을 쉽게 확인할 수 있습니다.
+
+```shell
+yarn storybook
+```
