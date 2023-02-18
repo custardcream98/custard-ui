@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import type { FC } from "react";
+import type { PropsWithChildren } from "react";
 import { cssBoxSize } from "../../styles/interpolate";
 
 export type CenterProps = {
@@ -7,7 +7,10 @@ export type CenterProps = {
   height?: string | number;
 };
 
-const Center: FC<CenterProps> = ({ children, ...rest }) => (
+const Center = ({
+  children,
+  ...rest
+}: PropsWithChildren<CenterProps>) => (
   <StyledCenter {...rest}>{children}</StyledCenter>
 );
 

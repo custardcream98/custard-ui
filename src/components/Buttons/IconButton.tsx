@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import type { FC } from "react";
+import type { PropsWithChildren } from "react";
 import type { IconType } from "react-icons";
 import type { ColorsType } from "../../@types";
 import { theme } from "../../styles";
@@ -15,7 +15,7 @@ type IconButtonProps = ButtonProps & {
   iconTitle?: string;
 };
 
-const IconButton: FC<IconButtonProps> = ({
+const IconButton = ({
   icon,
   iconSize,
   iconColor,
@@ -23,7 +23,7 @@ const IconButton: FC<IconButtonProps> = ({
   level,
   children,
   ...rest
-}) => {
+}: PropsWithChildren<IconButtonProps>) => {
   const Icon = icon;
 
   return (

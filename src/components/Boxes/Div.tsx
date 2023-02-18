@@ -1,6 +1,6 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import type { FC } from "react";
+import type { PropsWithChildren } from "react";
 import type { BlockComponentProps } from "../../@types";
 import {
   cssBorderRadius,
@@ -17,7 +17,11 @@ export type DivProps = {
   as?: "span";
 } & BlockComponentProps;
 
-const Div: FC<DivProps> = ({ as, children, ...rest }) => (
+const Div = ({
+  as,
+  children,
+  ...rest
+}: PropsWithChildren<DivProps>) => (
   <StyledDiv as={as} {...rest}>
     {children}
   </StyledDiv>

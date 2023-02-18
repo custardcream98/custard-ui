@@ -1,6 +1,9 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import type { CSSProperties, FC } from "react";
+import type {
+  CSSProperties,
+  PropsWithChildren,
+} from "react";
 import { cssBoxSize } from "../../styles/interpolate";
 import { resolveNumaricStyle } from "../../utils";
 
@@ -15,7 +18,10 @@ export type FlexProps = {
   gap?: string | number;
 };
 
-const Flex: FC<FlexProps> = ({ children, ...rest }) => (
+const Flex = ({
+  children,
+  ...rest
+}: PropsWithChildren<FlexProps>) => (
   <StyledFlex {...rest}>{children}</StyledFlex>
 );
 

@@ -1,7 +1,7 @@
 import { css } from "@emotion/react";
 import type { SerializedStyles } from "@emotion/serialize";
 import styled from "@emotion/styled";
-import type { FC } from "react";
+import type { PropsWithChildren } from "react";
 import type {
   BlockComponentProps,
   InlineLevelComponentProps,
@@ -48,11 +48,11 @@ export type InlineLevelTypographyProps = {
 export type TypographyProps = TextProps &
   (BlockTypographyProps | InlineLevelTypographyProps);
 
-const Typography: FC<TypographyProps> = ({
+const Typography = ({
   component = "span",
   children,
   ...rest
-}) => {
+}: PropsWithChildren<TypographyProps>) => {
   return (
     <StyledTypography
       as={component}

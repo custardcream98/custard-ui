@@ -1,4 +1,7 @@
-import type { MouseEventHandler, FC } from "react";
+import type {
+  MouseEventHandler,
+  PropsWithChildren,
+} from "react";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import type {
@@ -23,14 +26,14 @@ export type ButtonProps = {
   onClick?: MouseEventHandler<HTMLButtonElement>;
 } & Partial<StyledButtonProps>;
 
-const Button: FC<ButtonProps> = ({
+const Button = ({
   level = "primary",
   borderRadius = "medium",
   boxShadow = "default",
   children,
   onClick,
   ...rest
-}) => {
+}: PropsWithChildren<ButtonProps>) => {
   const onClickPreventDisabled: React.MouseEventHandler<HTMLButtonElement> =
     (event) => {
       if (level === "disabled") {
