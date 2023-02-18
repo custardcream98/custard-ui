@@ -1,0 +1,47 @@
+import { Meta, Canvas, Story } from "@storybook/addon-docs";
+import { Radio } from "../../../";
+
+<Meta title="Components/Inputs/Radio" component={Radio} />
+
+# Checkbox
+
+`input[type="radio"]`를 나타내는 컴포넌트입니다.
+
+<Canvas>
+  <Story name="Default">
+    <Radio
+      id="radio1"
+      name="radio"
+      label="Radio 1"
+      defaultChecked
+    />
+    <Radio id="radio2" name="radio" label="Radio 2" />
+    <Radio id="radio3" name="radio" label="Radio 3" />
+  </Story>
+</Canvas>
+
+`radioColor`로 색상을 변경할 수 있습니다.
+
+<Canvas>
+  <Story name="Secondary">
+    <Radio
+      id="radio-secondary1"
+      name="radio-secondary"
+      label="Radio 1"
+      radioColor="secondary"
+      defaultChecked
+    />
+    <Radio
+      id="radio-secondary2"
+      name="radio-secondary"
+      label="Radio 2"
+      radioColor="secondary"
+    />
+    <Radio
+      id="radio-secondary3"
+      name="radio-secondary"
+      label="Radio 3"
+      radioColor="secondary"
+    />
+  </Story>
+</Canvas>
