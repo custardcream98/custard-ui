@@ -1,6 +1,6 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import { forwardRef, useCallback, useState } from "react";
+import { forwardRef } from "react";
 import type {
   DefaultProps,
   ColorsType,
@@ -17,8 +17,9 @@ type CheckboxColorProps = {
 export type CheckboxProps = {
   id: string;
   label?: string;
-  name?: string;
-  initialChecked?: boolean;
+  name?: React.InputHTMLAttributes<HTMLInputElement>["name"];
+  value?: React.InputHTMLAttributes<HTMLInputElement>["value"];
+  defaultChecked?: React.InputHTMLAttributes<HTMLInputElement>["defaultChecked"];
   onCheckboxClick?: React.ChangeEventHandler<HTMLInputElement>;
 } & CheckboxColorProps &
   DefaultProps;
@@ -31,7 +32,8 @@ const Checkbox = forwardRef<
     id,
     label,
     name,
-    initialChecked = false,
+    value,
+    defaultChecked = false,
     checkedTextColor,
     checkedBackgroundColor,
     uncheckedTextColor,
@@ -41,33 +43,20 @@ const Checkbox = forwardRef<
   },
   ref
 ) {
-  const [checked, setChecked] = useState(initialChecked);
-
-  const handleClick: React.ChangeEventHandler<HTMLInputElement> =
-    useCallback(
-      (event) => {
-        event.stopPropagation();
-
-        setChecked((prev) => !prev);
-        onCheckboxClick?.(event);
-      },
-      [onCheckboxClick]
-    );
-
   return (
     <>
-      <StyledCheckBox
+      <StyledCheckbox
         ref={ref}
         id={id}
         name={name}
-        defaultChecked={checked}
+        defaultChecked={defaultChecked}
         type="checkbox"
-        onChange={handleClick}
+        value={value}
+        onChange={onCheckboxClick}
       />
       <StyledLabel
         htmlFor={id}
         className={className}
-        checked={checked}
         checkedTextColor={checkedTextColor}
         checkedBackgroundColor={checkedBackgroundColor}
         uncheckedTextColor={uncheckedTextColor}
@@ -79,41 +68,35 @@ const Checkbox = forwardRef<
   );
 });
 
-const StyledCheckBox = styled.input`
+const StyledCheckbox = styled.input`
   ${cssSrOnly}
 `;
 
-const StyledLabel = styled.label<
-  { checked: boolean } & CheckboxColorProps
->`
+const StyledLabel = styled.label<CheckboxColorProps>`
   display: inline-block;
 
   ${({
-    checked,
     checkedTextColor,
     checkedBackgroundColor,
     uncheckedTextColor,
     uncheckedBackgroundColor,
   }) =>
-    checked
-      ? css`
-          background-color: ${theme.colors[
-            checkedBackgroundColor ?? "primary"
-          ]};
-          color: ${theme.colors[
-            checkedTextColor ?? "white"
-          ]};
-        `
-      : css`
-          background-color: ${theme.colors[
-            uncheckedBackgroundColor ?? "white"
-          ]};
-          color: ${theme.colors[
-            uncheckedTextColor ?? "black"
-          ]};
-          outline: 2px solid
-            ${theme.colors[uncheckedTextColor ?? "black"]};
-        `}
+    css`
+      background-color: ${theme.colors[
+        uncheckedBackgroundColor ?? "white"
+      ]};
+      color: ${theme.colors[uncheckedTextColor ?? "black"]};
+      border: 1px solid
+        ${theme.colors[uncheckedTextColor ?? "black"]};
+
+      input[type="checkbox"]:checked + & {
+        background-color: ${theme.colors[
+          checkedBackgroundColor ?? "primary"
+        ]};
+        color: ${theme.colors[checkedTextColor ?? "white"]};
+        border: none;
+      }
+    `}
 
   padding: ${theme.spacing.xsmall};
   border-radius: ${theme.shape.borderRadius.large};
