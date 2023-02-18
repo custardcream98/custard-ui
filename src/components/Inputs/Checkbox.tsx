@@ -86,7 +86,7 @@ const StyledLabel = styled.label<CheckboxColorProps>`
         uncheckedBackgroundColor ?? "white"
       ]};
       color: ${theme.colors[uncheckedTextColor ?? "black"]};
-      border: 1px solid
+      outline: 1px solid
         ${theme.colors[uncheckedTextColor ?? "black"]};
 
       input[type="checkbox"]:checked + & {
@@ -94,7 +94,7 @@ const StyledLabel = styled.label<CheckboxColorProps>`
           checkedBackgroundColor ?? "primary"
         ]};
         color: ${theme.colors[checkedTextColor ?? "white"]};
-        border: none;
+        outline: none;
       }
     `}
 
