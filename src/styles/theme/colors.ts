@@ -8,7 +8,7 @@ const colors: Colors = {
   black: "#393939",
   primary: "#FFA500",
   secondary: "#5b52fb",
-  gray: "#ccc",
+  gray: "#cccccc",
 } as const;
 
 /**
