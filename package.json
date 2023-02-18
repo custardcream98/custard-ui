@@ -1,6 +1,6 @@
 {
   "name": "custard-ui",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Beautiful UI components for React Built with TypeScript and Emotion By custardcream98(Shi Woo, Park)",
   "repository": {
     "type": "git",
