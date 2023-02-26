@@ -1,0 +1,16 @@
+import { Meta, Canvas, Story } from "@storybook/addon-docs";
+import { Textarea } from "../../../";
+
+<Meta title="Components/Textarea" component={Textarea} />
+
+# Textarea
+
+`Textarea` 컴포넌트는 수직으로 사이즈를 조절할 수 있으며, `minHeight` prop을 통해 최소 높이를 지정할 수 있습니다.
+
+<Canvas>
+  <Story name="Default">
+    <Textarea placeholder="Type anything..." />
+  </Story>
+</Canvas>
+
+모바일 환경에서도 잘 지원됩니다.
