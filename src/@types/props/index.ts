@@ -4,3 +4,4 @@ export * from "./spacings";
 export * from "./text";
 export * from "./shapes";
 export * from "./defaultProps";
+export * from "./componentProps";
