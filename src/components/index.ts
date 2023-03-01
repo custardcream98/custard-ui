@@ -1,4 +1,5 @@
 export { default as Typography } from "./Typography";
+export { default as Tab } from "./Tab";
 
 export * from "./Buttons";
 export * from "./Boxes";
