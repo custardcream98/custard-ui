@@ -3,7 +3,7 @@ import {
   ColorPalette,
   ColorItem,
 } from "@storybook/addon-docs";
-import { theme } from "../../";
+import { colors } from "../../";
 
 <Meta title="Theme/Colors" />
 
@@ -12,27 +12,11 @@ import { theme } from "../../";
 주요 색상표입니다.
 
 <ColorPalette>
-  <ColorItem
-    title="theme.color.white"
-    colors={{ White: "#FFFFFF" }}
-  />
-  <ColorItem
-    title="theme.color.black"
-    subtitle="약간 옅은 검정"
-    colors={{ Black: "#393939" }}
-  />
-  <ColorItem
-    title="theme.color.gray"
-    colors={{ Gray: "#ccc" }}
-  />
-  <ColorItem
-    title="theme.color.primary"
-    subtitle="custard-ui의 메인 컬러"
-    colors={{ Orange: "#FFA500" }}
-  />
-  <ColorItem
-    title="theme.color.secondary"
-    subtitle="primary 컬러의 보조 컬러"
-    colors={{ PurpleBlue: "#5b52fb" }}
-  />
+  {Object.keys(colors).map((color) => (
+    <ColorItem
+      key={color}
+      title={`theme.color.${color}`}
+      colors={{ [color]: colors[color] }}
+    />
+  ))}
 </ColorPalette>
