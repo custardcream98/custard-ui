@@ -1,0 +1,2 @@
+const a={white:"#FFFFFF",black:"#393939",primary:"#FFA500",secondary:"#5b52fb",gray:"#cccccc",gray100:"#f8f9fa",gray200:"#e9ecef",gray300:"#dee2e6",gray400:"#ced4da",gray500:"#adb5bd",gray600:"#6c757d",gray700:"#495057",gray800:"#343a40",gray900:"#212529"},r={primary:{main:a.primary,text:a.white},secondary:{main:a.secondary,text:a.white},outline:{main:"transparent",text:a.black},disabled:{main:a.gray,text:a.black}};export{a as c,r as p};
+//# sourceMappingURL=colors-acd7d2dd.js.map
